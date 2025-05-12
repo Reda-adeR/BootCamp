@@ -1,5 +1,5 @@
 
-def valid_int(self, val, excep):
+def valid_int(val, excep):
     if not isinstance(val, int) or val < 0:
         raise Exception(f"Invalid {excep}")
 
@@ -9,7 +9,6 @@ class BankAccount:
         self.pw = pw
         self.auth = auth
         self.balance = balance
-        self.withdraw = None
 
     def authenticate(self, userN, psw):
         if userN == self.username and psw == self.pw:
@@ -66,7 +65,7 @@ class ATM:
             self.try_limit = 2
 
     def logIn(self):
-        if self.curr_tries == self.try_limit:
+        if self.curr_tries == 3:
             print("you exceeded your tries limit")
             return False
         else:
@@ -74,20 +73,53 @@ class ATM:
             psw = input("Enter your Password : ")
             for obj in self.account_list:
                 if obj.username == login and obj.pw == psw:
-                    return True
+                    obj.auth = True
+                    return obj
             self.curr_tries += 1
             print("Error in login or Password")
             return False
 
+    def withdraw(self, obj):
+        val = input("enter Value of your withdraw : ")
+        obj.withdraw(int(val))
+
+    def deposit(self, obj):
+        val = input("enter Value of your deposit : ")
+        obj.adDeposit(int(val))
+
+    def exit(self, obj):
+        exit("Byeee", obj.username)
+
+    def show_account_menu(self, obj):
+        actionDict = {
+            "1" : self.withdraw,
+            "2" : self.deposit,
+            "3" : self.exit          
+        }
+        while 1:
+            print("before")
+            selection = input("Choose an action : 1 - withdraw, 2 - deposit, 3 - exit")
+            print("after")
+            if selection not in actionDict:
+                print("bad selection")
+                continue
+            actionDict[selection](obj)
+
     def show_main_menu(self):
         self.curr_tries = 0
+        obj = None
         while 1:
             selection = input("1 - Log in | 2 - Exit : ")
             if selection == '2':
                 exit("See you next time")
             if selection == '1':
-                if self.logIn():
+                obj = self.logIn()
+                if obj == False:
+                    continue
+                else:
                     print("You loged in succesfully")
+                    break
+        self.show_account_menu(obj)
 
 
 
@@ -102,4 +134,8 @@ class ATM:
 
 
 if __name__ == "__main__":
-    pass
+    ac1 = BankAccount(100, "reda", "123", False)
+    ac2 = BankAccount(500, "hamid", "321", True)
+    ac3 = MinimumBalanceAccount(500, "hamid", "321", 200, True)
+    gg = ATM([ac1, ac2, ac3], 3)
+    gg.show_main_menu()
