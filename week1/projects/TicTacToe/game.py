@@ -67,6 +67,7 @@ class TicTacToe:
         while 1:
             pos = self.update_board(self.player)
             self.display_board(self.board)
+            self.moves += 1
             if self.moves > 4:
                 if self.checkWin(pos):
                     print(f"Winner is {self.player}")
@@ -75,7 +76,6 @@ class TicTacToe:
                 print("DRAW MATCH")
                 break
             self.switch_turn(self.player)
-            self.moves += 1
 
 
 bo = TicTacToe()
