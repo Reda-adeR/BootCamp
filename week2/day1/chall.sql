@@ -9,12 +9,12 @@ CREATE TABLE actors (
 );
 
 
-INSERT INTO actors (first_name, last_name, birth_date, num_oscars)
+INSERT INTO menu_tt (itemname, itemprice)
 VALUES
-('Angelina', 'Jolie', '1975-06-04', 1),
-('George', 'Clooney', '1961-06-05', 2),
-('Jennifer', 'Aniston', '1969-02-11', 0),
-('Matt', 'Damon', '1970-08-10', 5);
+('couscous',100),
+('pizza', 20),
+('burger',  130),
+('desert', 50);
 
 
 

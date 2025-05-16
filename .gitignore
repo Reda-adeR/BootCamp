@@ -1,3 +1,4 @@
 test.session.sql
 .vscode
 venv
+__pycache__
