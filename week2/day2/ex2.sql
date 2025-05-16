@@ -33,9 +33,8 @@ select * from inventory;
 
 select * from film where film_id not in(select film_id from inventory);
 
-
-
 select Ci.city, Co.country from city Ci inner join country Co on Ci.country_id=Co.country_id;
+
 
 -- select * from customer;
 -- select * from staff;
