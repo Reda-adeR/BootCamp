@@ -8,16 +8,6 @@ class MenuItem:
         self.price = price
         self.db = Connector()
 
-    # def connect(self):
-    #     if not self.connection:
-    #         self.connection = Connector()
-
-    # def disconnect(self):
-    #     if self.connection:
-    #         self.connection.close()
-    #         self.connection = None
-    #         print("disconnected")
-
     def manage_query(self, query, fetch):
         self.db.connect()
         res = self.db.run_query(query, fetch)
@@ -63,9 +53,11 @@ class MenuItem:
 
 
 
-gg = MenuItem("burger", 100)
 
-# gg.save()
-# gg.delete([1,2])
-gg.update(5, "couscous", 1800)
+if __name__ == "__main__":
+    gg = MenuItem("burger", 100)
+
+    # gg.save()
+    # gg.delete([1,2])
+    gg.update(5, "couscous", 1800)
 

@@ -24,13 +24,15 @@ class MenuManager:
         query = f"SELECT * FROM menu_items;"
         res = self.manage_query([query])
         print("ALL ITEMS")
-        print(*res, sep='\n')
+        # print(*res, sep='\n')
+        return res
 
 
+if __name__ == "__main__":
 
-gg = MenuManager()
+    gg = MenuManager()
 
-gg.all_items()
+    gg.all_items()
 
 # gg.get_by_name(["couscous"])
 
