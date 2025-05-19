@@ -3,7 +3,7 @@
 from connector import Connector
 
 class MenuItem:
-    def __init__(self, name, price):
+    def __init__(self, name=None, price=None):
         self.name = name
         self.price = price
         self.db = Connector()

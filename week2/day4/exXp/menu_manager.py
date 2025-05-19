@@ -16,15 +16,12 @@ class MenuManager:
             ns = ["%s"] * len(names)
             query = f"SELECT * FROM menu_items WHERE item_name IN ({', '.join(ns)});"
             res = self.manage_query([query, tuple(names)])
-            print("ITEMS REQUESTED : ")
-            print(*res, sep='\n')
+            return res
         # SELECT * FROM menu_items WHERE item_name IN ()
 
     def all_items(self):
         query = f"SELECT * FROM menu_items;"
         res = self.manage_query([query])
-        print("ALL ITEMS")
-        # print(*res, sep='\n')
         return res
 
 
