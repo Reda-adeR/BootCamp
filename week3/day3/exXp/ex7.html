@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="listBooks"></section>
+    <script>
+
+        const allBooks = [
+            {
+                title: "1984",
+                author: "George Orwell",
+                image: "https://picsum.photos/100?1",
+                alreadyRead: true
+            },
+            {
+                title: "The Alchemist",
+                author: "Paulo Coelho",
+                image: "https://picsum.photos/100?2",
+                alreadyRead: false
+            }
+        ];
+
+        const section = document.querySelector(".listBooks");
+
+        allBooks.forEach(book => {
+            const div = document.createElement("div");
+            const text = document.createElement("p");
+            text.textContent = `${book.title} written by ${book.author}`;
+            const img = document.createElement("img");
+            img.src = book.image;
+            img.style.width = "100px";
+
+            if (book.alreadyRead) {
+                text.style.color = "red";
+            }
+
+            div.appendChild(text);
+            div.appendChild(img);
+            section.appendChild(div);
+        });
+
+    </script>
+</body>
+</html>

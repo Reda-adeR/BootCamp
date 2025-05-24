@@ -21,7 +21,7 @@ class Connector:
                     password    = psw,
                     dbname      = db
                 )
-                print("connected to db")
+                # print("connected to db")
                 return self.connection
             except OperationalError as e:
                 print("Connection Failed : ", e)
@@ -32,7 +32,7 @@ class Connector:
         if self.connection:
             self.connection.close()
             self.connection = None
-            print("disconnected")
+            # print("disconnected")
 
     def run_query(self, query, fetch):
         if self.connection:
@@ -41,7 +41,6 @@ class Connector:
             cursor.connection.commit()
             if fetch:
                 res = cursor.fetchall()
-                # print(res)
                 return res
 
     # def get_data(self, query):

@@ -1,12 +1,9 @@
 
-from connector import Connector
 from menu_item import MenuItem
-
 
 class MenuManager(MenuItem):
     def __init__(self):
         super().__init__()
-        # self.db = Connector()
 
     def manage_query2(self, query):
         self.connect()

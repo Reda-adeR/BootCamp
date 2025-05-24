@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coloring Squares Full Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    #container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    #palette {
+      width: 10%;
+      min-width: 80px;
+      background: #f0f0f0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      border-right: 2px solid #ccc;
+    }
+
+    .color {
+      width: 30px;
+      height: 30px;
+      border: 2px solid black;
+      cursor: pointer;
+    }
+
+    #grid {
+      width: 90%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+      grid-auto-rows: auto;
+    }
+
+    .square {
+      background-color: white;
+      border: 1px solid #ddd;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <div id="palette">
+      <div class="color" style="background: red;"></div>
+      <div class="color" style="background: blue;"></div>
+      <div class="color" style="background: green;"></div>
+      <div class="color" style="background: yellow;"></div>
+      <div class="color" style="background: black;"></div>
+      <div class="color" style="background: white; border: 2px dashed #000;"></div>
+    </div>
+    <div id="grid"></div>
+  </div>
+
+  <script>
+    const grid = document.getElementById('grid');
+    const palette = document.getElementById('palette');
+    let currentColor = 'black';
+    let isDrawing = false;
+
+    function fillGrid() {
+      grid.innerHTML = "";
+      const gridWidth = grid.clientWidth;
+      const gridHeight = grid.clientHeight;
+      const squareSize = 20;
+      const cols = Math.floor(gridWidth / squareSize);
+      const rows = Math.floor(gridHeight / squareSize);
+      grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+      for (let i = 0; i < rows * cols; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+
+        square.addEventListener('mousedown', () => {
+          isDrawing = true;
+          square.style.backgroundColor = currentColor;
+        });
+
+        square.addEventListener('mouseover', () => {
+          if (isDrawing) {
+            square.style.backgroundColor = currentColor;
+          }
+        });
+
+        square.addEventListener('mouseup', () => {
+          isDrawing = false;
+        });
+
+        grid.appendChild(square);
+      }
+    }
+
+    // Initial fill
+    fillGrid();
+
+    // Refill on resize
+    window.addEventListener('resize', fillGrid);
+
+    // Color selection
+    palette.addEventListener('click', (e) => {
+      if (e.target.classList.contains('color')) {
+        currentColor = e.target.style.backgroundColor;
+      }
+    });
+
+    document.body.addEventListener('mouseup', () => {
+      isDrawing = false;
+    });
+  </script>
+
+</body>
+</html>
