@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 2</title>
+</head>
+<body>
+
+<form>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="firstname"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lastname"><br><br>
+  <input type="submit" value="Submit" id="submit">
+</form> 
+<ul class="usersAnswer"></ul>
+
+<script>
+  const form = document.querySelector('form');
+  console.log(form);
+
+  const fnameInput = document.getElementById('fname');
+  const lnameInput = document.getElementById('lname');
+  console.log(fnameInput, lnameInput);
+
+  const inputsByName = document.querySelectorAll('[name]');
+  console.log(inputsByName);
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevents page reload
+
+    const fname = fnameInput.value.trim();
+    const lname = lnameInput.value.trim();
+
+    if (fname && lname) {
+      const ul = document.querySelector('.usersAnswer');
+      ul.innerHTML = ''; // Clear previous results
+
+      const li1 = document.createElement('li');
+      li1.textContent = fname;
+      const li2 = document.createElement('li');
+      li2.textContent = lname;
+
+      ul.appendChild(li1);
+      ul.appendChild(li2);
+    }
+    else {
+      alert('Please fill in both fields.');
+    }
+  });
+</script>
+
+</body>
+</html>

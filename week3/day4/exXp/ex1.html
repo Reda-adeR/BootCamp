@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 1</title>
+  <style>
+    .fade-out {
+      animation: fade 2s forwards;
+    }
+
+    @keyframes fade {
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<article>
+  <h1> Some Facts </h1>
+  <h2> The Chocolate </h2>
+  <h3> History of the chocolate </h3>
+  <p> Chocolate is made from tropical Theobroma cacao tree seeds. 
+  Its earliest use dates back to the Olmec civilization in Mesoamerica.</p>
+  <p> After the European discovery of the Americas, chocolate became 
+  very popular in the wider world, and its demand exploded. </p>
+  <p> Chocolate has since become a popular food product that millions enjoy every day, 
+  thanks to its unique, rich, and sweet taste.</p> 
+  <p> But what effect does eating chocolate have on our health?</p> 
+</article>
+
+<button id="boldBtn">Make Paragraphs Bold</button>
+
+<script>
+  // 1. Log the h1
+  const h1 = document.querySelector('h1');
+  console.log(h1);
+
+  // 2. Remove last paragraph
+  const article = document.querySelector('article');
+  article.lastElementChild.remove();
+
+  // 3. h2 click -> red bg
+  const h2 = document.querySelector('h2');
+  h2.addEventListener('click', () => {
+    h2.style.backgroundColor = 'red';
+  });
+
+  // 4. h3 click -> hide
+  const h3 = document.querySelector('h3');
+  h3.addEventListener('click', () => {
+    h3.style.display = 'none';
+  });
+
+  // 5. Bold all paragraphs on button click
+  const button = document.getElementById('boldBtn');
+  const paragraphs = document.querySelectorAll('article p');
+  button.addEventListener('click', () => {
+    paragraphs.forEach(p => p.style.fontWeight = 'bold');
+  });
+
+  // BONUS 1: Random font size on h1 hover
+  h1.addEventListener('mouseover', () => {
+    const size = Math.floor(Math.random() * 101);
+    h1.style.fontSize = `${size}px`;
+  });
+
+  // BONUS 2: Fade out 2nd paragraph on hover
+  paragraphs[1].addEventListener('mouseover', () => {
+    paragraphs[1].classList.add('fade-out');
+  });
+</script>
+</body>
+</html>
