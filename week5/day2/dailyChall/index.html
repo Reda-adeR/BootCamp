@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Giphy Random Fetch</title>
+  <style>
+    img {
+      max-width: 200px;
+      margin: 10px;
+    }
+    .gif-container {
+      display: inline-block;
+      position: relative;
+    }
+    button {
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Random Giphy Search</h1>
+  <form id="gifForm">
+    <input type="text" id="searchInput" placeholder="Enter category (e.g. sun)" required>
+    <button type="submit">Get GIF</button>
+  </form>
+  <button id="deleteAll">DELETE ALL</button>
+
+  <div id="gifResults"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
